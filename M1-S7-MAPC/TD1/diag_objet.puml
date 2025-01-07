@@ -1,0 +1,22 @@
+@startuml do_example1
+object "mémoireAlice : Mémoire" as mA
+mA : titre = "Patrons et Anti-Patrons"
+object "_ : Chapitre" as c1
+c1 : titre = "Introduction"
+c1 : pages = {"...", "..."}
+object "_ : Chapitre" as c2
+c2 : titre = "Patrons"
+c2 : pages = {"...", "...", "..."}
+object "_ : Chapitre" as c3
+c3 : titre = "Anti-Patrons"
+c3 : pages = {"...", "..."}
+object "_ : Chapitre" as c4
+c4 : titre = "Conclusion"
+c4 : pages = {"..."}
+object "_ : ArrayList" as csA
+mA --> "cs" csA
+csA --> c1
+csA --> c2
+csA --> c3
+csA --> c4
+@enduml
