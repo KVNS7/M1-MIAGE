@@ -1,0 +1,85 @@
+@startuml Diagramme
+
+class Personne {
+  -nom: String
+  -age: Int
+  -salaire: Float
+}
+
+interface Requete {
+  +getSousRequetes(): List<Requete>
+  +getProfondeur(): Int
+  +execute(): Set<Personne>
+  +accept(visiteur: Visiteur): void
+}
+
+class RequeteComposite implements Requete {
+  -sousRequetes: List<Requete>
+  +getSousRequetes() { return sousRequetes }
+  +getProfondeur() { return sousRequetes.map(q => q.getProfondeur()).max() + 1 }
+  +accept(visiteur: Visiteur) { visiteur.visiter(this) }
+}
+
+class RequeteFeuille implements Requete {
+  +getSousRequetes() { return [] }
+  +getProfondeur() { return 0 }
+  +execute() { return Set() }
+  +accept(visiteur: Visiteur) { visiteur.visiter(this) }
+}
+
+class Ensemble extends RequeteFeuille {
+  -personnes: Set<Personne>
+  +getSousRequetes() { return [] }
+  +getProfondeur() { return 1 }
+  +execute() { return personnes }
+  +accept(visiteur: Visiteur) { visiteur.visiter(this) }
+}
+
+class Selection extends RequeteFeuille {
+  -sousRequete: Requete
+  -predicat: Function<Personne, Boolean>
+  +getSousRequetes() { return [sousRequete] }
+  +getProfondeur() { return sousRequete.getProfondeur() + 1 }
+  +execute() { return sousRequete.execute().filter(predicat) }
+  +accept(visiteur: Visiteur) { visiteur.visiter(this) }
+}
+
+class Difference extends RequeteFeuille {
+  -requete1: Requete
+  -requete2: Requete
+  +getSousRequetes() { return [requete1, requete2] }
+  +execute() { return requete1.execute() - requete2.execute() }
+  +accept(visiteur: Visiteur) { visiteur.visiter(this) }
+}
+
+class Union extends RequeteFeuille {
+  -requetes: List<Requete>
+  +getSousRequetes() { return requetes }
+  +execute() { return requetes.flatMap(q => q.execute()).toSet() }
+  +accept(visiteur: Visiteur) { visiteur.visiter(this) }
+}
+
+interface Visiteur {
+  +visiter(ensemble: Ensemble): void
+  +visiter(selection: Selection): void
+  +visiter(difference: Difference): void
+  +visiter(union: Union): void
+  +visiter(requeteFeuille: RequeteFeuille): void
+}
+
+class CalculCout implements Visiteur {
+  -coutTotal: Int = 0
+
+  +visiter(ensemble: Ensemble)
+  +visiter(selection: Selection)
+  +visiter(difference: Difference)
+  +visiter(union: Union)
+  +visiter(requeteFeuille: RequeteFeuille)
+}
+
+Requete ..> Visiteur : accept
+
+Personne "1" o-- "*" Ensemble
+RequeteComposite "1" *-- "*" Requete : "contient"
+
+@enduml

@@ -1,0 +1,64 @@
+@startuml
+
+' Définition de l'interface Requete
+interface Requete {
+  + getSousRequetes() : List<Requete>
+  + getProfondeur() : Integer
+  + executer() : Set<Personne>
+}
+
+' Définition de la classe Personne
+class Personne {
+  - nom : String
+  - age : Integer
+  - salaire : Double
+  + getNom() : String
+  + getAge() : Integer
+  + getSalaire() : Double
+}
+
+' Définition de la classe RequeteFeuille (classe de base pour les feuilles)
+abstract class RequeteFeuille {
+  + executer() : Set<Personne>
+}
+
+' Définition de la classe RequeteSimple (hérite de RequeteFeuille)
+class RequeteSimple {
+  + executer() : Set<Personne>
+}
+
+' Définition de la classe RequeteSelection (hérite de RequeteFeuille)
+class RequeteSelection {
+  - predicate : Function
+  + executer() : Set<Personne>
+}
+
+' Définition de la classe RequeteDifference (hérite de RequeteFeuille)
+class RequeteDifference {
+  - requete1 : Requete
+  - requete2 : Requete
+  + executer() : Set<Personne>
+}
+
+' Définition de la classe RequeteComposite (classe composite)
+class RequeteComposite {
+  - sousRequetes : List<Requete>
+  + getSousRequetes() : List<Requete>
+  + getProfondeur() : Integer
+  + executer() : Set<Personne>
+  + addRequete(requete : Requete) : void
+}
+
+Requete <|-- RequeteFeuille
+Requete <|-- RequeteComposite
+RequeteFeuille <|-- RequeteSimple
+RequeteFeuille <|-- RequeteSelection
+RequeteFeuille <|-- RequeteDifference
+
+' RequeteComposite contient plusieurs sous-requêtes
+RequeteComposite "1" *-- "*" Requete : "contient"
+
+' Les requêtes peuvent être exécutées sur des ensembles de Personnes
+Personne "1" --> "*" Requete : "utilise"
+
+@enduml
