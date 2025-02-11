@@ -51,7 +51,6 @@ public class Main {
                 }
             });
             filtre6.start();
-
             
             try {    
                 Thread.sleep(100); // laisse aux threads le temps de finir avant de demander une nouvelle entrée

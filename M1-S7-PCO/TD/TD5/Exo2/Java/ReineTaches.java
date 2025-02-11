@@ -1,4 +1,4 @@
-package Exo2;
+package Exo2.Java;
 
 import java.util.concurrent.Semaphore;
 

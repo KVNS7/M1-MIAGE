@@ -21,12 +21,10 @@ public class Filtre extends Thread {
                 if (c == '\0') {
                     break; 
                 }
-
                 
                 if (Character.toString(c).matches(pattern)) {
                     c = remplacement;
                 }
-
                 
                 buffDroit.write(c);
             }

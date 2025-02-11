@@ -9,8 +9,6 @@ char *PHRASE2 = "Prennent des goélands, vastes oiseaux des mers,";
 char *PHRASE3 = "Qui suivent, indolents compagnons de voyage,";
 char *PHRASE4 = "Le navire glissant sur les gouffres amers.";
 
-
-
 void *aff_T(void *mess)
 {
     char *s = (char *)mess;

@@ -7,7 +7,9 @@ public class IncrementeDecrementeSynchro {
         @Override
         public void run() {
             for (int i = 0; i < LOOPS; i++) {
-                synchronized (IncrementeDecrementeSynchro.class) {x++;}
+                synchronized (IncrementeDecrementeSynchro.class) {
+                    x++;
+                }
             }
         }
     }

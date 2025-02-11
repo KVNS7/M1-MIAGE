@@ -6,7 +6,7 @@
 #include <time.h>
 #include <pthread.h>
 
-#define N 20000
+#define N 60000
 
 double max_pair = 0, max_impair = 0; // variables stockant les max pour les parties paire et impair
 int x_max_pair = 1, y_max_pair = 1; // variables stockant les max x,y pour la partie pair

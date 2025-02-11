@@ -1,5 +1,3 @@
-package TD3;
-
 public class java_mono {
 
 	static int x_max, y_max = 1;

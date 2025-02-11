@@ -5,7 +5,7 @@
 #include <math.h>
 #include <time.h>
 
-#define N 20000
+#define N 60000
 
 double max = 0;
 int x_max = 1, y_max = 1;

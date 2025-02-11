@@ -1,5 +1,3 @@
-package TD3;
-
 public class JavaMulti {
 
     static int xMax, yMax = 1;
