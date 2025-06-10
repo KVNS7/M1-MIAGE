@@ -1,0 +1,98 @@
+\chapter{Faisabilité et perspectives du remplacement total} \label{chapitre:faisabilite}
+
+\section{Cartographie des tâches d’une équipe de développement}
+
+Les articles de notre bibliographie font apparaître un ensemble récurrent de \textbf{huit fonctions} que toute équipe de développement — humaine ou multi-agents — doit couvrir :
+
+\begin{itemize}
+  \item \textbf{Analyse des exigences \& priorisation du backlog} \parencite{ashraf_autonomous_2025, abbas_ai-driven_2024}.
+  \item \textbf{Planification de sprint \& management de projet} \parencite{khan_ai-driven_2025}.
+  \item \textbf{Génération et refactorisation du code} \parencite{rasheed_codepori_2024, zahid_multi-agent_2024}.
+  \item \textbf{Tests automatisés et validation fonctionnelle} \parencite{rasheed_codepori_2024, khan_ai-driven_2025}.
+  \item \textbf{Débogage et correction de bugs} \parencite{ashraf_autonomous_2025, vallecillos_ruiz_agent-driven_2024}.
+  \item \textbf{Documentation et génération de rapports} \parencite{ashraf_autonomous_2025, zahid_multi-agent_2024}.
+  \item \textbf{Revue de code / Assurance qualité} \parencite{rasheed_codepori_2024, abbas_ai-driven_2024}.
+  \item \textbf{Intégration \& déploiement continus (CI/CD)} \parencite{khan_ai-driven_2025}.
+\end{itemize}
+
+
+\section{Couverture actuelle par les agents IA}
+
+Les études analysées montrent un niveau d’automatisation contrasté :  
+\begin{itemize}
+  \item \textbf{Développement :} fort (85 à 89\% de précision HumanEval avec CodePori) \parencite{rasheed_codepori_2024}.  
+  \item \textbf{Refactorisation / bug fixing :} amélioration notable via pipelines itératifs \parencite{vallecillos_ruiz_agent-driven_2024}.  
+  \item \textbf{Tests générés automatiquement :} partiel, dépend de la couverture de benchmarks \parencite{abbas_ai-driven_2024}.  
+  \item \textbf{Architecture et priorisation produit :} faible ; décisions stratégiques requièrent toujours une validation humaine \parencite{handler_taxonomy_2023}.  
+  \item \textbf{DevOps :} automatisation des pipelines CI/CD prometteuse mais encore supervisée \parencite{khan_ai-driven_2025}.
+\end{itemize}
+
+\section{Analyse SWOT d’une équipe 100 \% IA}
+
+Avant de statuer sur la faisabilité d’un remplacement total, il est utile de synthétiser, sous forme SWOT, les \textbf{forces} (Strength), \textbf{faiblesses} (Weaknesses), \textbf{opportunités} (Opportunities) et \textbf{menaces} (Threats) dégagées par les études de cas et simulations précédentes.  
+Le tableau \ref{tab:SWOT} résume ces facteurs :
+
+\begin{table}[H]
+    \begin{tabular}{|p{2.5cm}|p{6cm}|p{6cm}|}
+        \hline
+        \textbf{Strength} & Vitesse d'exécution quasi 24/7 \parencite{ashraf_autonomous_2025} & Réduction des coûts unitaires \parencite{rasheed_codepori_2024} \\
+        \hline
+        \textbf{Weaknesses} & Hallucinations, biais, dettes techniques \parencite{cui_risk_2024} & Dépendance aux API propriétaires \parencite{rasheed_codepori_2024}\\
+        \hline
+        \textbf{Opportunities} & Nouveaux modèles SaaS sans humains & Personnalisation rapide pour marchés verticaux \\
+        \hline
+        \textbf{Threats} & Fuite de données / attaques back-door \parencite{wang_unique_2024} & Éthique et responsabilité légale \\
+        \hline
+    \end{tabular}
+    \caption{Analyse SWOT d'une équipe 100\% IA}
+    \label{tab:SWOT}
+\end{table}
+
+\section{Scénarios d’évolution}
+
+Les retours d’expérience et prototypes étudiés suggèrent une trajectoire en trois paliers pour l’adoption des agents IA dans le développement logiciel.
+
+\subsection{Court terme : collaboration homme–IA}
+
+Dans la phase actuelle, les agents agissent avant tout en supplément, comme co-pilotes :  
+\begin{itemize}
+  \item génération ou complétion de code, recherche de snippets, écriture de tests unitaires ;
+  \item suggestions de refactorisation et détection précoce de failles courantes.  
+\end{itemize}
+Le développeur reste le \textbf{reviewer critique}, relit et valide chaque changement avant fusion.  
+\textcite{zahid_multi-agent_2024} soulignent que malgré les capacités des agents en terme de détection de bug, l'intervention humaine reste essentielle pour gérer des problèmes complexes et fortement contextualisés.
+
+\subsection{Moyen terme : équipes hybrides réduites}
+
+Dans une équipe hybride, on pourrait viser un ratio d'un humain pour cinq agents IA, l’humain restant responsable de l’architecture et de la validation métier.
+ 
+L’humain se concentrerait sur :
+\begin{itemize}
+  \item la définition de l’architecture / des priorités produit ;
+  \item l’arbitrage des décisions critiques (sécurité, budget).  
+  \item éventuellement la relecture avant déploiement
+\end{itemize}
+Les agents IA, orchestrés dans un workflow continu, prennent en charge :
+\begin{enumerate}
+  \item le codage et la documentation ;
+  \item l’exécution automatique de tests et le débogage ;
+  \item la mise à jour des pipelines CI/CD et du monitoring.  
+\end{enumerate}
+\textcite{khan_ai-driven_2025} rapportent que cette configuration réduit le temps de développement tout en maintenant un feedback loop humain aux points de contrôle clés (déploiement, ...).
+
+\subsection{Long terme : autonomie complète sous supervision minimale}
+
+À horizon plus lointain, on peut envisager une \textbf{équipe 100 \% IA} livrant en continu, avec :
+\begin{itemize}
+  \item un contrôle a posteriori : audits périodiques et tests de conformité ;  
+  \item des guardrails de sûreté (policies, sandboxing) pour limiter les dérives \parencite{cui_risk_2024}.  
+\end{itemize}
+Les tâches humaines se déplacent vers :
+\begin{itemize}
+  \item la gouvernance (définition d’objectifs, gestion des risques) ;  
+  \item la validation légale et réglementaire ;  
+  \item l’optimisation des coûts d’infrastructure LLM et la mise à jour des modèles.  
+\end{itemize}
+Ce scénario demeure conditionné à la résolution des menaces identifiées : fuites de données et attaques backdoor \parencite{wang_unique_2024}, ainsi qu’à l’instauration d’un cadre de responsabilité clair pour les décisions prises par les agents.
+
+\paragraph{Ouverture éthique}Ces perspectives soulèvent néanmoins une question fondamentale : \textit{remplacer entièrement les développeurs humains par des agents IA serait-il éthique, juste et socialement acceptable ?}

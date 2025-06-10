@@ -1,0 +1,238 @@
+\chapter{Méthodologie}
+
+\section{Systematic Mapping Study (SMS)}
+
+La \textbf{Systematic Mapping Study} (SMS) est une méthode de revue de littérature formelle visant à cartographier et classer l’état de l’art d’un domaine de recherche de façon exhaustive et reproductible. Elle se déroule en quatre grandes phases :
+
+\begin{enumerate}
+  \item \textbf{Définition des questions de recherche} (QR) et des objectifs de la carte ;
+  \item \textbf{Recherche systématique} des publications pertinentes dans les bases de données (ex. IEEE Xplore, Scholar, ACM) selon des chaînes de requêtes préétablies ;
+  \item \textbf{Sélection et filtrage} des articles via des critères d’inclusion/exclusion, combinant filtrage automatique (titres, abstracts, scoring) puis examen manuel (abstract, introduction, table des matières, conclusion) ;
+  \item \textbf{Classification et synthèse} des résultats : attribution de catégories thématiques, visualisation sous forme de matrice ou de graphique, identification des lacunes et des tendances.
+\end{enumerate}
+
+Dans ce mémoire, nous appliquons la démarche SMS pour structurer notre recherche bibliographique sur la génération automatique de code par agents IA. Chaque étape (définition des requêtes, filtrage, scoring, classification) suit le protocole SMS afin d'assurer fiabilité, transparence et reproductibilité des travaux existants.
+
+
+\section{Méthode PICO}
+
+Pour structurer la question de recherche, nous utilisons la méthode \textbf{PICO}.
+Cette approche, acronyme de 
+\textit{Population}, \textit{Intervention}, \textit{Comparison} et \textit{Outcomes},
+exige de définir explicitement ces quatre composantes. Elle aide ainsi à formuler une question précise et à guider la recherche .
+
+Notre question de recherche est formulée de la manière suivante : "Est-il possible de remplacer entièrement une équipe de développement par des agents IA ?"
+
+Le tableau \ref{PICO} présente la décomposition de notre problématique selon la méthode PICO.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{4cm}|p{9cm}|}
+  \hline
+  \textbf{Élément} & \textbf{Application au mémoire} \\
+  \hline
+  \textbf{P}opulation & Équipe de développement \\
+  \hline
+  \textbf{I}ntervention & Remplacement par des agents IA \\
+  \hline
+  \textbf{C}omparison & Équipe humaine traditionnelle \\
+  \hline
+  \textbf{O}utcomes & Faisabilité technique d’un remplacement total \\
+  \hline
+\end{tabular}
+\caption{Formulation PICO de la question de recherche}
+\label{PICO}
+\end{table}
+
+\section{Formulation des requêtes}
+
+La méthode PICO décrite ci-dessus nous permet ainsi de formuler les requêtes nous permettant d'interroger les bases de données scientifiques et de pouvoir en extraire des papiers utiles à notre recherche. Pour répondre à celle-ci, nous divisons notre recherche en quatre requêtes :
+
+\begin{itemize}
+    \item Définition de LLM
+    \item Définition d'agent IA
+    \item Taille et composition idéales d'une équipe de développement
+    \item Remplacement d'une équipe de développement par des agents IA
+\end{itemize}
+
+Ces quatre requêtes vont nous permettre de définir ce que sont des LLM ainsi que des agents IA, pour ensuite examiner les papiers consacrés à la taille et composition idéales d'une équipe. Enfin, nous explorerons les travaux sur la génération automatique de code par les agents IA ce qui nous fournira les éléments nécessaires pour croiser ces informations et déterminer dans quelle mesure une équipe humaine peut ou non être remplacée par des agents IA.
+
+Pour la recherche, nous utilisons Google Scholar qui permet de chercher des papiers dans différentes bases (e.g. IEEE ou ArXiv) ce qui en fait l'outil le plus polyvalent pour nos besoins.
+
+\subsection{Définition de LLM}
+
+Cette requête (Listing 2.1) nous met à disposition les papiers permettant de définir le terme "LLM".
+
+\begin{codeC}[Requête - LLM]
+
+    allintitle:"large language model" ("systematic literature review" OR survey OR taxonomy)
+\end{codeC}
+
+\subsection{Définition d'Agents IA}
+
+Cette requête (Listing 2.2) recense les papiers proposant des définitions d’agents IA (ou " LLM agents "), afin de cerner précisément ce concept.
+
+\begin{codeC}[Requête - Agents IA]
+    allintitle:(agent OR "LLM agent") (taxonomy OR definition)
+\end{codeC}
+
+\subsection{Taille et composition idéales d'une équipe de développement}
+
+Cette requête (Listing 2.3) vise la littérature traitant de la taille idéale et de la composition optimale des équipes de développement logiciel.
+
+\begin{codeC}[Requête - Equipe de développement]
+    intitle:"team size" AND ideal AND (software development OR agile OR scrum)
+\end{codeC}
+
+\subsection{Remplacement d'une équipe de développement par des Agents IA}
+
+Cette requête (Listing 2.4) rassemble les travaux étudiant dans quelle mesure des agents IA sont capables de générer automatiquement du code et peuvent remplacer une équipe de développement humaine.
+
+\begin{codeC}[Requête - Remplacement équipe de développement]
+    ("automatic code generation" OR "code synthesis" OR "AI-generated code") AND (intitle:agent OR intitle:"software agent" OR intitle:"AI agent")
+\end{codeC}
+
+\section{Filtrage}
+
+Avant de lire entièrement chaque papier, nous appliquons plusieurs étapes de filtrage afin de conserver uniquement les papiers essentiels et qui auront une réelle utilité au développement de nos propos.
+
+\subsection{Filtrage sur l'année}
+Notre premier critère de filtrage, appliqué directement lors de la recherche depuis Google Scholar, est l'année.
+
+Pour chaque recherche, un filtre sur l'année a été appliqué :
+Pour la définition de LLM  (Listing 2.1) et l'automatisation du développement avec agents IA (Listing 2.4) nous recherchons uniquement les papiers publiés à partir de 2024. Ce choix est dû au grand nombre de papiers traitant des LLM et à l'essor récent de ceux-ci ces dernières années, cela nous permet donc premièrement de retenir moins de papiers et deuxièmement d'avoir des études plus récentes et actuelles de ceux-ci. On passe donc de 121 à 101 papiers pour la définition des LLM et de 325 à 63 papiers pour l'automatisation du développement avec agents IA.
+
+Concernant la définition des agents IA (Listing 2.2) et la composition et taille idéales d'une équipe de développement (Listing 2.3) nous recherchons uniquement les papiers publiés à partir de 2024. On passe donc de 174 à 22 papiers pour la définition des agents IA et de 127 à 30 papiers pour l'équipe de développement.
+
+\subsection{Filtrage sur le type de document}
+
+Après extraction des différents papiers à l'aide de Zotero, nous commençons les étapes de filtrage plus précises passant par différents scripts python. La première d'entre elles est un filtrage sur le type de document.
+Nous pouvons voir dans nos papiers différents types de documents, en voici la liste exhaustive ainsi que leur nombre :
+
+\begin{itemize}
+    \item journalArticle : 108
+    \item preprint : 66
+    \item conferencePaper : 28
+    \item bookSection : 7
+    \item thesis : 3
+    \item document : 2
+    \item report : 1
+    \item book : 1
+\end{itemize}
+
+Nous décidons donc d'exclure les papiers de type \textit{report} et \textit{document} étant des types de documents sans description ne nous permettant pas de savoir au premier abord de quel papier il s'agit.
+Le tableau \ref{filtrageTypeDoc} montre le nombre de papiers pour chaque requête avant et après le filtrage sur le type de document.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|}
+  \hline
+  \textbf{Requête} & \textbf{Papiers avant filtrage} & \textbf{Papiers après filtrage}\\
+  \hline
+  Définition LLMs & 101 & 101 \\
+  \hline
+  Définition agents IA & 22 & 21 \\
+  \hline
+  Taille et composition d'équipe & 30 & 29 \\
+  \hline
+  Automatisation par Agents IA & 63 & 62 \\
+  \hline
+  \textbf{Total} & 216 & 213 \\
+  \hline
+\end{tabular}
+\caption{Filtrage sur le type de document}
+\label{filtrageTypeDoc}
+\end{table}
+
+\subsection{Filtrage sur le titre}
+
+Nous continuons le filtrage en procédant à une sélection sur le titre avec une liste de mots éliminatoires tels que 'political', 'philosophy' ou encore 'religion' (une liste exhaustive est disponible en annexe \ref{annexe:mots_eliminatoires}).
+
+Le tableau \ref{filtrageTitre} montre le nombre de papiers pour chaque requête avant et après filtrage sur le titre.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|}
+  \hline
+  \textbf{Requête} & \textbf{Papiers avant filtrage} & \textbf{Papiers après filtrage}\\
+  \hline
+  Définition LLMs & 101 & 98 \\
+  \hline
+  Définition agents IA & 21 & 21 \\
+  \hline
+  Taille et composition d'équipe & 29 & 26 \\
+  \hline
+  Automatisation par Agents IA & 62 & 62 \\
+  \hline
+  \textbf{Total} & 213 & 207 \\
+  \hline
+\end{tabular}
+\caption{Filtrage sur le titre : mots éliminatoires}
+\label{filtrageTitre}
+\end{table}
+
+\subsection{Filtrage sur l'abstract}
+
+Notre dernière étape de filtrage \textit{"automatique"}, avant le filtrage manuel, sera un système de points sur l'abstract. Pour cela, on établit un système à points qui sont attribués lorsque les mots d'un groupe de mots prédéfini sont présents dans l'abstract. Le maximum étant de 3 points si tous les termes sont compris dans l'abstract et le minimum de 0, si aucun terme n'est présent.
+Le tableau \ref{filtrageAbstractScoring} présente pour chaque requête la répartition des papiers en fonction de leur score d’abstract.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+  \hline
+   \diagbox{\textbf{Requête}}{\textbf{Score}} & \textbf{3pts} & \textbf{2pts} & \textbf{1pts} & \textbf{0pts}\\
+  \hline
+  Définition LLMs & 5 & 54 & 29 & 10 \\
+  \hline
+  Définition agents IA & 5 & 3 & 6 & 7 \\
+  \hline
+  Taille et composition d'équipe & 2 & 13 & 10 & 1 \\
+  \hline
+  Automatisation par Agents IA & 1 & 5 & 26 & 30 \\
+  \hline
+  \textbf{Total} & \textbf{14} & \textbf{76} & \textbf{71} & \textbf{48} \\
+  \hline
+\end{tabular}
+\caption{Filtrage sur l'abstract : score}
+\label{filtrageAbstractScoring}
+\end{table}
+
+Suite aux résultats de ce filtrage, nous garderons les papiers ayant obtenu un score de 3 points. Cependant, nous prenons la décision de garder également ceux ayant obtenu 2 points pour les requêtes \textit{Taille et composition d'équipe} et \textit{Automatisation par Agents IA}.
+
+Il nous reste ainsi un total de 31 papiers à trier manuellement.
+
+\subsection{Filtrage manuel}
+
+Les étapes de filtrage \textit{"automatiques"} sont utiles grâce à leur simplicité et rapidité d'exécution, surtout sur de gros volumes de papiers, mais restent cependant assez limitées au niveau de la compréhension du texte. Nous devons donc procéder à un filtrage manuel en lisant d'abord l'abstract (première étape), puis en passant en revue l'introduction, les titres de sections et la conclusion (deuxième étape) des articles sélectionnés à l'étape précédente.
+
+Le tableau \ref{filtrageManuel} présente le nombre de papiers obtenus après chaque étape de filtrage manuel.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|}
+    \hline
+    \textbf{Requêtes} & \textbf{Nombre initial de papiers} & \textbf{1ère étape} & \textbf{2e étape} \\
+    \hline
+     Définition LLMs & 5 & 2 & \textbf{2}\\
+     \hline
+     Définition agents IA & 5 & 2 & \textbf{2}\\
+     \hline
+     Taille et composition d'équipe & 15 & 2 & \textbf{2}\\
+    \hline
+     Automatisation par Agents IA & 6 & 6 & \textbf{6}\\
+     \hline
+     \textbf{Total} & \textbf{31} & \textbf{12} & \textbf{12} \\
+     \hline
+\end{tabular}
+\caption{Filtrage manuel}
+\label{filtrageManuel}
+\end{table}
+
+Nous conservons donc pour notre recherche un total de \textbf{12} papiers dont :
+\begin{itemize}
+    \item \textbf{2} pour la définition des LLM ;
+    \item \textbf{2} pour la définition des agents IA ;
+    \item \textbf{2} pour la taille et la composition d’équipe ;
+    \item \textbf{6} pour l’automatisation par Agents IA.
+\end{itemize}
+Évidemment, bien que chaque article soit rattaché à une catégorie ou à une question de recherche précise, les informations qu’il contient peuvent être mobilisées dans différentes parties de ce mémoire.

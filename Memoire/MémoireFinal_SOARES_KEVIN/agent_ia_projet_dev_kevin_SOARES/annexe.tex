@@ -1,0 +1,11 @@
+\chapter{Annexes}
+\appendix
+\makeatletter
+\def\@seccntformat#1{Annexe~\csname the#1\endcsname:\quad}
+\makeatother
+
+\section{Mots éliminatoires pour les titres}\label{annexe:mots_eliminatoires}
+Afin de garantir la pertinence des articles retenus, les titres comportant l’un des mots suivants sont exclus :
+\begin{lstlisting}[breaklines=true,basicstyle=\ttfamily\small]
+ELIMINATORY_WORDS = ["philosophy","sociology","ethics","political","policy","society","healthcare","clinical","gender","history","art","religion","linguistics","psychology"]
+\end{lstlisting}

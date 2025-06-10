@@ -1,0 +1,272 @@
+\documentclass[a4paper, 12pt, twoside]{report}
+\usepackage[utf8]{inputenc}		% LaTeX, comprend les accents !
+\usepackage[T1]{fontenc}		
+\usepackage[francais]{babel}
+\usepackage{lmodern}
+\usepackage{ae,aecompl}
+\usepackage[top=2.5cm, bottom=2cm, 
+			left=3cm, right=2.5cm,
+			headheight=15pt]{geometry}
+\usepackage{graphicx}
+\usepackage{eso-pic}	% Nécessaire pour mettre des images en arrière plan
+\usepackage{array} 
+\usepackage{hyperref}
+\usepackage{lastpage}
+\definecolor{bleuleger}{RGB}{0,0,200}
+
+
+\usepackage{listings}
+\lstnewenvironment{codeC}[1][]
+{%
+	\lstset{language=C,
+		frame=single,
+		captionpos=b, 
+		backgroundcolor=\color{bleuleger!5},
+		basicstyle=\ttfamily\tiny,
+		numbers=left,
+		numberstyle=\color{black},
+		numbersep=5pt,
+		breaklines=true,
+		tabsize=4,
+		keywordstyle=\bfseries\color{green!40!black},
+		stringstyle=\color{red}\ttfamily,
+		identifierstyle=\color{blue},
+		caption={[#1]{#1}},           
+		commentstyle=\color{purple!40!black}}
+}
+{}
+\input{pagedegarde}
+
+
+\author{Le nom de l'étudiant}
+\title{Le titre du mémoire}
+\entreprise{Le nom de votre entreprise}
+\fonction{Votre fonction}
+\datedebut{5 septembre 2022}
+\datefin{22 mai 2023}
+
+\date{30 mai 2023}
+\jurya{M. François Delbot}{Maître de conférences}{Responsable du master}
+
+\juryb{Mme. Prénom Nom}{Titre de votre tuteur enseignant}{Tuteur enseignant}
+%Le titre de votre enseignant référent est soit Maître de conférences, soit Professeur des universités. Si vous aves un doute, demandez moi. 
+
+\juryc{M. Prénom Nom}{Poste de votre maître d'apprentissage}{Maître d'apprentissage}
+%Demandez à votre maître de stage quel est son poste. Par exemple, directeur du système d'information, chef de projet, responsable d'équipe etc...
+
+%\juryd{M. Prénom Nom}{poste de votre maître de stage}{Maître de stage}
+%Ajouter le juryd si votre maître de stage viens accompagné d'un collègue.
+
+
+
+
+%\usepackage[firstpage]{draftwatermark}
+%\usepackage{tcolorbox}
+%\SetWatermarkText{Confidentiel}
+%\SetWatermarkScale{0.9}
+%\SetWatermarkColor{red!20}
+\begin{document}
+\pagedegarde
+
+
+%placer vos remerciements ici
+\chapter*{Remerciements}
+Merci à tous les étudiants de la promotion de respecter ce template. Les remerciements du mémoire sont généralement destinés aux personnes ayant joué un rôle important dans votre année et votre travail. L'usage est de citer le nom, le poste de chaque personne et la raison de votre remerciement.
+\chapter*{Résumés ($1$ page)}
+\section*{Résumé}
+Les résumés en français ($\frac{1}{2}$-page) et en anglais ($\frac{1}{2}$-page) seront mis l’un à la suite de l’autre, juste avant le sommaire. Il s’agit de la synthèse de votre travail, environ 250 mots, leur lecture doit permettre de comprendre
+le sujet traité. Il résume l'ensemble du travail, de l'introduction à la conclusion. Ainsi, le résumé implique clarté, précision et concision. 
+\section*{Abstract}
+The abstracts in French ($\frac{1}{2}$-page) and in English ($\frac{1}{2}$-page) will be put one after the other, just before the summary. This is a summary of your work, about 250 words, and should help the reader to understand the work you have done. It summarises the whole work, from the introduction to the conclusion. Thus, the summary implies clarity, precision and conciseness. 
+\tableofcontents
+
+\chapter{Introduction}
+L'introduction est la première section de votre mémoire scientifique et elle sert à présenter votre travail au lecteur. Elle doit énoncer clairement l'objectif de votre recherche, mettre en contexte votre étude et présenter brièvement les principales questions que vous allez aborder dans votre mémoire. Elle doit convaincre le lecteur que le travail vaut la peine d’être lu. Il faut motiver ce lecteur, qui n’est peut-être pas a priori intéressé par votre travail. Expliquez pourquoi le problème étudié est important, quelle sera votre contribution et pourquoi les solutions apportées sont appropriées. Gardez à l’esprit que le lecteur n’a pas encore lu le travail, qu’il ne connaît pas le sujet et qu’il n’est pas un expert du domaine.
+\chapter{Découpage du mémoire}
+      \begin{itemize}
+                \item Un mémoire est découpé en chapitres.
+                \item Un chapitre est découpé en sections.
+                \item Une section est découpée en sous-sections.
+                \item Dans certains cas on peut avoir des sous-sous-sections.
+                \item On évite un découpage plus important. Donc pas de numérotation du type 5.4.3.2.1 .
+            \end{itemize}
+
+\begin{enumerate}
+            \item Le titre d'une section sert à structurer le texte et à introduire le sujet de la section.
+            \item Le titre n'est pas toujours lu (malheureusement).
+            \item Le premier paragraphe de la section doit donc introduire la section en précisant son sujet car seul le titre ne suffit pas.
+            \item Pour des sections de haut niveau (comme un chapitre), il est utile de commencer par une brève description du contenu, en présentant les sous-sections. 
+\end{enumerate}
+
+
+\chapter{Consignes}
+Ce template doit être utilisé obligatoirement par les étudiants. Ne pas l'utiliser entraînera une pénalité importante. Vous devez impérativement rendre le fichier pdf produit ainsi qu'un fichier zip contenant tous les documents nécessaires à la compilation de votre rapport. Tout autre format entrainera la note de $0$ pour le rapport.\\
+
+
+Vous pouvez trouver cela contraignant, mais à l'échelle de la promotion cela permet :
+\begin{enumerate}
+	\item D'uniformiser la mise en page, la police et la taille des caractères, la taille des interlignes etc ...
+	\item De simplifier le travail des enseignants lorsqu'ils souhaitent retrouver l'information dans une pile de rapports.
+	\item D'aider les étudiants en formalisant les choses.
+	\item De vérifier que vous êtes capable de respecter une consigne stricte. 
+\end{enumerate}
+$\ $\\
+Voici un ensemble de règles à respecter scrupuleusement :
+\begin{enumerate}
+\item Votre rapport doit contenir entre 20 et 35 pages, hors annexes.
+\item Vous n'avez pas le droit de changer la taille ou la police des caractères, la hauteur des interlignes ou autre.
+\item Vous devez remplacer l'image en haut à droit de la page de garde par le logo de l'entreprise dans laquelle vous effectuer votre stage/ apprentissage.
+\item Toute image ou tableau placé dans votre document doit avoir un titre ET une légende. De plus vous devez impérativement le citer dans votre texte. 
+\item Les ouvrages qui vous ont aidé dans votre stage doivent être présents dans votre bibliographie.
+\item De la même manière les sites qui vous ont aidé dans votre stage doivent être présents dans votre webographie.
+\end{enumerate}
+
+\section{Exemple de citation}
+Voici un exemple pour citer un ouvrage ou un site web \cite{cat}
+\section{Exemple de tableau, d'image et de code source}
+Voici un exemple de tableau :
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline 
+• & • \\ 
+\hline 
+• & • \\ 
+\hline 
+\end{tabular} 
+\end{center}
+\label{referencedutableau}
+
+\caption{Titre du tableau : légende du tableau}
+\end{table}
+Et ne jamais oublier que lorsqu'on place un tableau, on doit l'utiliser dans le texte comme ici avec le tableau Table \ref{referencedutableau}. Et on fait la même chose avec une image, comme avec la Figure \ref{Tux}.
+
+\begin{figure}[h]
+\centering
+\includegraphics{Tux.png}
+\caption{Tux, le pingouin}
+\label{Tux}
+\end{figure}
+Le placement des figures en \LaTeX se fait automatiquement. Ainsi, une image peut être déplacée à un endroit autre que celui où vous avez placé le code d'insertion. Des options permettent de forcer le placement. Vous pouvez aussi ne placer que la ligne d'inclusion sans l'environnement figure, mais n'oubliez pas de donner un titre et une légende.$\ $\\$\ $\\
+\section{Exemple de code source}
+Voici un exemple de code source :
+\begin{codeC}[la vie c'est chouette]
+	#include <stdio.h>
+	#include <stdlib.h>
+	
+	int main()
+	{
+		int nb,i,premier=1;
+		printf("Entrez votre nombre : ");
+		scanf("%d",&nb);
+		for(i=2;i<nb;i++)
+		{
+			if(nb%i==0) premier = 0;
+		}
+		if(premier==1&&nb>=2)
+		{
+			printf("%d est un nombre premier !",nb);
+		}
+		else
+		{
+			printf("%d n'est pas un nombre premier !",nb);
+		}
+		return EXIT_SUCCESS;
+	}
+\end{codeC}	
+
+
+\section{Utilisation de ce template}
+
+
+\subsection{Les balises importantes définies dans ce template}
+Placez votre nom et prénom dans le champs author. Il sera automatiquement placé sur la page de garde et le pieds de page.
+\begin{verbatim}
+\author{François Delbot}
+\end{verbatim}
+
+Placez le tire de votre stage dans la balise title
+\begin{verbatim}
+\title{Exemple de titre de mémoire}
+\end{verbatim}
+
+Vous devez placer le nom de l'entreprise dans laquelle vous avez effectué votre stage/ apprentissage. Ce nom sera réutilisé automatiquement dans l'entête de chaque page :
+\begin{verbatim}
+\entreprise{Laboratoire d'Informatique de Paris 6}
+\end{verbatim}
+
+Merci d'indiquer la fonction qui correspond à votre mission. Par exemple :
+\begin{verbatim}
+\fonction{Développeur PHP}
+\end{verbatim}
+
+La balise datedebut doit contenir la date de début de votre stage au format jour mois année. La balise datefin doit contenir la date de fin prévue de votre stage. Si votre stage est prolongé, ou que vous signez un contrat faisant suite à votre stage, indiquez la date de fin prévue. Enfin, placez dans la balise date la date de votre soutenance orale. Par exemple
+\begin{verbatim}
+\datedebut{26 mars 2018}
+\datefin{15 juillet 2018}
+\date{4 juin 2018}
+\end{verbatim}
+
+Les balises suivantes vous permettent d'indiquer le nom et le poste de votre maître de stage, ainsi que le nom et la fonction de votre tuteur enseignant :
+\begin{verbatim}
+\jurya{M. François Delbot}{Maître de conférences}{Responsable d'année}
+\juryb{Mme. Prénom Nom}{Titre de votre enseignant référent}{Tuteur enseignant}
+
+\juryc{M. Prénom Nom}{Poste de votre maître de stage}{Maître de stage}
+\end{verbatim}
+Le titre de votre tuteur enseignant est soit Maître de conférences, soit Professeur des universités. Si vous avez un doute, demandez moi. 
+
+
+\section{Exemple de section}
+\section{Un autre exemple}
+	\subsection{Une sous section}
+	\subsubsection{Encore un niveau plus bas}
+	\paragraph{Exemple de paragraphe} et du bla bla...
+	\subsubsection{Encore un niveau plus bas}
+
+
+
+
+
+
+
+
+
+
+
+\chapter{Conclusion}
+La conclusion est la dernière partie du travail écrit (la bibliographie et les annexes n’étant pas considérées comme faisant partie du texte lui-même). Elle est en général organisée comme suit :
+            \begin{center}
+            \begin{enumerate}
+                \item résumé du travail et des contributions
+                \item rappel des résultats principaux
+                \item applications possibles des résultats (s’il y a lieu)
+                \item limitations de la solution proposée
+                \item perspectives (pistes pour d’éventuels travaux futurs).
+            \end{enumerate}
+   \end{center}
+Le texte de la conclusion doit rester neutre mais doit mettre en avant l’apport de l’auteur par rapport au sujet.
+
+
+\renewcommand{\bibname}{Bibliographie}
+\addcontentsline{toc}{chapter}{Bibliographie}
+\renewcommand{\refname}{}
+\begin{thebibliography}{2}
+   \bibitem[label]{cle} Auteur, TITRE, editeur, annee
+   \bibitem[LAM94]{lam1} L. LAMPORT, {\it \LaTeX : A Document preparation system, Addison-Wesley, 1994}
+\end{thebibliography}
+
+\renewcommand{\bibname}{Webographie}
+\addcontentsline{toc}{chapter}{Webographie}
+\begin{thebibliography}{2}
+   \bibitem[CAT]{cat} \url{savoircoder.fr/cat}
+\end{thebibliography}
+
+\chapter{Annexes}
+\appendix
+\makeatletter
+\def\@seccntformat#1{Annexe~\csname the#1\endcsname:\quad}
+\makeatother
+	\section{Exemple d'annexe}
+	\section{Une autre annexe}
+\end{document}

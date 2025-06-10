@@ -1,0 +1,211 @@
+\documentclass[a4paper, 12pt, twoside]{report}
+
+% ========================
+% ======= Imports
+% ========================
+
+\usepackage[utf8]{inputenc}             % LaTeX, comprend les accents !
+\usepackage[T1]{fontenc}                % Meilleur rendu des accents sur PDF
+\usepackage[francais]{babel}            % Typographie française
+\usepackage{lmodern}                    % Police Latin Modern
+\usepackage{ae,aecompl}                 % Rendu de police amélioré
+\usepackage[top=2.5cm, bottom=2cm,      % Définition des marges du document
+		left=3cm, right=2.5cm,
+		headheight=15pt]{geometry}
+\usepackage{graphicx}                   % Insertion d'image
+\usepackage{eso-pic}	                % Image d'arrière-plan
+\usepackage{array}                      % Amélioration tableaux
+\usepackage{hyperref}                   % Liens cliquables sur PDF
+\usepackage{lastpage}                   % Numérotation pied de page
+\definecolor{bleuleger}{RGB}{0,0,200}   % Couleur personnalisée bleuleger
+
+\usepackage{listings}                   % Affichage de code source
+\lstnewenvironment{codeC}[1][]          % Environnement perso pour code C
+{%
+	\lstset{language=C,
+		frame=single,
+		captionpos=b, 
+		backgroundcolor=\color{bleuleger!5},
+		basicstyle=\ttfamily\tiny,
+		numbers=left,
+		numberstyle=\color{black},
+		numbersep=5pt,
+		breaklines=true,
+		tabsize=4,
+		keywordstyle=\bfseries\color{green!40!black},
+		stringstyle=\color{red}\ttfamily,
+		identifierstyle=\color{blue},
+		caption={[#1]{#1}},           
+		commentstyle=\color{purple!40!black}}
+}
+{}
+
+\usepackage[
+  backend=biber,
+  style=apa,
+  sorting=none,
+  babel=other
+]{biblatex}
+\addbibresource{bibliographie.bib}
+\addbibresource{webographie.bib}
+
+\usepackage{float} % pour l’option [H]
+\usepackage{diagbox}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{0pagedegarde}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% ========================
+% == Début du document
+% ========================
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ========================
+% ==== Page de garde
+% ========================
+
+\author{Kevin SOARES}
+\title{Les agents IA dans la réalisation de projets  de développement}
+\entreprise{École Normale Supérieure (ENS - PSL)}
+\fonction{Apprenti SIFAC}
+\datedebut{2 septembre 2024}
+\datefin{28 mai 2025}
+
+\date{10 juin 2025}
+
+\jurya{M. François DELBOT}{Maître de conférences}{Responsable du master / Tuteur}
+\juryc{M. Stéphane POULAIN}{Directeur Financier}{Maître d'apprentissage}
+
+\pagedegarde
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ========================
+% ==== Remerciements 
+% ========================
+
+\chapter*{Remerciements}
+
+Je tiens tout d’abord à exprimer ma sincère gratitude à \textbf{M.~François Delbot}, Maître de conférences et responsable du Master, pour son accompagnement tout au long de mon parcours. Déjà tuteur enseignant lors de mon stage de fin d’année précédente, il m’a de nouveau soutenu cette année, en m’aidant à définir une problématique pertinente pour ce mémoire. Je le remercie chaleureusement pour son engagement constant et la qualité de son encadrement.
+
+Mes remerciements vont également à \textbf{M.~Karim El-Mahou}, qui a été mon tuteur lors mon arrivée à l’ENS. Son soutien technique comme humain a grandement facilité mon intégration et orienté mes premiers travaux.
+
+Je souhaite enfin remercier \textbf{M.~Stéphane Poulain}, directeur du département, pour l’accueil chaleureux qu’il m’a réservé et pour les conditions de travail qu’il a mises en place. Sa disponibilité et ses conseils avisés ont contribué à faire de cette expérience un moment riche tant sur le plan professionnel que personnel.
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ========================
+% ==== Resumé
+% ========================
+
+\input{1resume}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\tableofcontents
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ========================
+% ==== Introduction
+% ========================
+
+\input{2introduction}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ========================
+% ==== Méthodologie
+% ========================
+
+\input{3methodologie}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ========================
+% ==== État de l'art LLMs
+% ========================
+
+\input{4llm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ========================
+% ==== Effort humain et substitution
+% ========================
+
+\input{5remplacement}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ========================
+% ==== Etude de cas
+% ========================
+
+\input{6etudecas}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ========================
+% ==== Evaluation faisabilite 
+% ========================
+
+\input{7faisabilite}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ========================
+% ==== Conclusion
+% ========================
+
+\input{8conclusion}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ========================
+% ==== Bibliograpghie 
+% ========================
+
+\printbibliography[%
+    nottype=online,
+    title={Bibliographie},  % titre personnalisé
+    heading=bibintoc        % ajoute au TOC comme chapter
+]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ========================
+% ==== Webographie
+% ========================
+
+\printbibliography[
+  type=online,
+  title={Webographie},
+  heading=bibintoc
+]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ========================
+% ==== Annexe
+% ========================
+
+\input{annexe}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+\thispagestyle{empty} % pas de numéro de page
+\null               % boîte vide pour générer la page
+
+\end{document}

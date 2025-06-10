@@ -1,0 +1,63 @@
+\chapter{Effort humain, dynamique d’équipe et substitution potentielle} \label{chapitre:humainAgent}
+
+\section{Taille optimale et productivité des équipes humaines}
+
+À présent, nous cherchons à quantifier comment des agents IA peuvent remplacer ou épauler une équipe humaine en simulant des workflows réels de développement.
+
+Dans un projet de développement, la constitution de l’équipe est un facteur déterminant de réussite. Il faut qu'elle soit : ni trop petite (risque de surcharge -> retards sur les livraisons, burn-outs, ... et de dépendance à quelques individus), ni trop grande (coûts de coordination élevés, manque de communication et complexité organisationnelle). Pour mesurer et comparer la productivité des équipes, on utilise notamment :
+
+\begin{itemize}
+  \item \textbf{SLOC} (Source Line Of Code) et \textbf{defect density} pour évaluer le rendement et la qualité / présence de défauts \parencite{wikiSLOC}, \parencite{wikiSoftwareMetrics};
+  \item \textbf{Bus factor} pour mesurer la vulnérabilité organisationnelle \parencite{wikiBusFactor}.
+\end{itemize}
+Des études récentes confirment et affinent ces constats :
+\begin{itemize}
+  \item \textcite{olivares_intelligent_2024} appliquent des algorithmes bio-inspirés et montrent que la taille optimale d’une \textbf{équipe Agile} se situe généralement \textbf{entre 5 et 9 membres}. Au-delà, les retours sont décroissants, surtout en l’absence de structures de communication formalisées.
+  % olivares_intelligent_2024
+  % Our results endorse this approach, indicating that even in larger project settings, teams can be optimally divided into groups of 5 to 9 members to maintain communication efficacy and individual productivity
+  %
+    \item \textcite{bodaragama_exploring_2023} démontrent que malgré qu'une équipe plus petite produit du code avec moins de défauts et qu'une plus grande équipe produirait un code plus complexe qui pourrait donc conduire à des problèmes de maintenance, la relation taille d’équipe–qualité dépend de facteurs modérateurs (communication, expérience, complexité), sans seuil universel, et soulignent l’importance d’utiliser plusieurs métriques de qualité pour en rendre compte et donc choisir d'une taille d'équipe optimale.
+% bodaragama_exploring_2023
+% The negative relationship between team size and defect density implies that larger teams may struggle with quality control, producing software with more defects than smaller teams. Additionally, the positive relationship between team size and code complexity suggests that larger teams tend to produce more complex code, which may lead to maintenance issues in the long run. However, the study did not find a significant relationship between team size and maintainability, indicating that maintainability may not be as sensitive to team size as defect density and code complexity. These findings have important implications for software development organizations. To optimize software quality, organizations should consider the trade-offs between team size and other factors such as project complexity and available resources.
+%
+\end{itemize}
+
+Ces résultats soulignent donc :
+\begin{itemize}
+  \item l’importance cruciale des compétences transverses (revue de code, tests, DevOps) pour maintenir la qualité ;
+  \item la nécessité d’adapter la taille des équipes aux besoins du projet et de mettre en place des canaux de communication formalisés, afin de prévenir la surcharge organisationnelle et de garantir une qualité de code élevée.
+\end{itemize}
+
+En conséquence, pour des projets exigeant une maintenabilité constante et soumis à des évolutions fréquentes, il est préférable de privilégier une équipe restreinte, capable de conserver une vision partagée, de fluidifier la communication et de limiter la complexité organisationnelle.
+
+\section{Simulations d’équipes multi-agents}
+
+Pour évaluer la capacité des agents IA à prendre en charge des workflows de développement logiciel et mesurer leur substitution potentielle à une équipe humaine, plusieurs études récentes ont mis en place des cadres expérimentaux qui reproduisent des interactions de projet réelles.
+
+\begin{itemize}
+  \item \textcite{ashraf_autonomous_2025} présentent un cadre expérimental où des agents LLM spécialisés (analyse des exigences, génération de code, débogage, exécution des tests, documentation) collaborent sur un même projet, et mesurent l’accélération des livraisons et la réduction des erreurs humaines.
+% ashraf_autonomous_2025
+% Experimental results indicate that AI-driven autonomous agents can effectively handle a wide range of tasks, including code generation, debugging, requirement analysis, and documentation.
+%
+
+\item \textcite{zahid_multi-agent_2024} explorent des architectures multi-agents où différents LLMs collaborent sur des phases de génération, test et correction de code, et rapportent une amélioration du débit global de production ainsi qu’une meilleure détection de certaines classes d’erreurs.
+\end{itemize}
+
+\paragraph{Les indicateurs clés retenus sont :}
+\begin{itemize}
+  \item l’accélération des livraisons et la réduction des erreurs humaines \parencite{ashraf_autonomous_2025};
+  \item l’amélioration du débit global de production de code et de la détection d’erreurs \parencite{zahid_multi-agent_2024}.
+\end{itemize}
+
+\paragraph{Les conclusions principales sont les suivantes :}
+\begin{itemize}
+  \item \textcite{ashraf_autonomous_2025} démontrent que la coopération de plusieurs agents LLM accélère significativement les livraisons et réduit les erreurs humaines.
+  \item \textcite{zahid_multi-agent_2024} montrent que ces agents, en automatisant les tâches répétitives (code boilerplate, documentation), allègent la charge de travail et améliorent la productivité, tout en contribuant à l’identification des inefficacités et vulnérabilités du code.
+\end{itemize}
+
+Ces simulations démontrent que, bien que la parallélisation des rôles augmente sensiblement la productivité, la qualité finale reste dépendante d’une supervision formelle (revue et tests approfondis), soulignant l’importance d’un équilibre entre autonomie des agents et contrôles de fiabilité.  
+
+
+
+
+

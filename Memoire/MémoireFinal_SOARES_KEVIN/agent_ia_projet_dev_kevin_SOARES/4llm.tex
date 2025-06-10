@@ -1,0 +1,130 @@
+\chapter{État de l'art des LLMs appliqués au développement informatique} \label{chapitre:etatArtLLM}
+
+\section{Définitions fondamentales : IA, LLM et Agent IA}
+
+\subsection{Intelligence artificielle (IA)}
+L’\textbf{intelligence artificielle} (\textbf{IA}) est un domaine de l’informatique visant à concevoir des programmes capables de comprendre leur environnement, raisonner et agir de façon à maximiser la réussite d’objectifs (tels que la reconnaissance d’images, la planification de trajectoires ou, comme dans ce mémoire : \textbf{la génération de code}).
+
+\subsection{Large Language Model (LLM)}
+Un \textbf{Large Language Model} (\textbf{LLM}) est un réseau de neurones de type transformeur entraîné sur une large gamme de données. \parencite{cui_risk_2024}. Son objectif est d’estimer la probabilité du prochain mot afin de générer du texte cohérent. Inclure du code source dans le corpus permet au modèle de créer, compléter ou modifier des programmes informatiques. Le LLM est donc essentiellement une "brique" de génération et de raisonnement probabiliste : il produit du \textbf{texte} mais n’interagit pas par lui‑même avec un environnement logiciel.
+
+% cui_risk2024
+% "Large language models (LLMs) are the LMs that have billions or even more model parameters pre-trained on massive data, such as LLaMA … and GPT families (e.g., GPT-3, GPT-3.5, and GPT-4). Recently, researchers discovered the scaling law, i.e., increasing the sizes of pre-training data and model parameters can significantly enhance an LM’s capacity for downstream tasks."
+%
+
+\subsection{Agent IA}
+Nous appelons \textbf{Agent IA} une entité logicielle semi‑autonome voire autonome qui observe un état (par exemple un dépôt git / un projet ou un rapport de tests), planifie une séquence d’actions et exécute ces actions pour atteindre un objectif.  Un agent IA s’appuie sur un ou plusieurs LLMs pour la génération ou la prise de décision et a donc un certain set de compétences, un rôle défini et une mémoire qui lui est propre \parencite{handler_taxonomy_2023}, mais entoure ceci d’une logique d’orchestration : mémoire de travail, appels d’API, exécution de tests, boucles de rétroaction.
+
+% handler_taxonomy_2023
+% Each agent is endowed with a unique set of competencies, which include a clearly defined role, an individual memory, as well as access to further contextual resources, such as data, tools, or foundation models… The backbone of their reasoning and interpretative capabilities is rooted in the incorporation of large language models (LLMs)
+%
+% rasheed_codepori_2024
+% Agents are LLM instances, customized to carry out multiple specific tasks, replacing human workflows
+%
+
+\subsection{Différences essentielles entre IA, LLM et Agent IA}
+Maintenant que nous avons défini ces 3 termes, nous pouvons aborder les différences essentielles entre ceux-ci :
+
+\begin{itemize}
+  \item \textbf{Périmètre :} l'IA est l’ensemble. Le LLM est un sous‑ensemble spécialisé dans la modélisation du langage naturel entraîné sur des ensembles de données. L'agent IA est un système logiciel qui intègre potentiellement un ou plusieurs LLMs tout en y ajoutant une couche d’autonomie (planification, action, raisonnement) \parencite{cui_risk_2024}.
+
+% cui_risk_2024
+% figure 1 page 1 ("training data")
+  
+  \item \textbf{Architecture :} le LLM est un modèle de type transformeur ne conservant pas d’état externe entre les appels, tandis que l’agent IA maintient un état persistant et une mémoire de long terme pour effectuer plusieurs tours d’itération \parencite{handler_taxonomy_2023}.
+
+% handler_taxonomy_2023
+%Each agent is endowed with a unique set of competencies, which include a clearly defined role and an individual memory.
+%
+  \item \textbf{Entrées/Sorties :} le LLM prend un prompt textuel et retourne du texte.  L’agent IA accepte des objectifs de haut niveau, invoque des outils (exécution de tests, CI/CD, IDE) et valide les résultats avant de produire un livrable logiciel \parencite{rasheed_codepori_2024}.
+  
+  \item \textbf{Responsabilité :} un LLM ne porte pas d’intention propre ; toute responsabilité incombe à l’utilisateur.  L’agent IA en revanche inclut une couche de prise de décision et d’alignement dont la sûreté doit être évaluée \parencite{cui_risk_2024}.
+\end{itemize}
+\noindent En résumé, le LLM est le moteur de génération et de raisonnement, tandis que l’agent IA en est le conducteur capable d’exploiter ce moteur pour naviguer, de manière semi‑autonome / autonome, dans le cycle de vie de l'atteinte de l'objectif défini (dans notre cas : pour le développement logiciel).
+
+\section{Capacités actuelles des LLMs pour la génération de code}
+
+Les benchmarks de complétion et de correction sur code ont rapidement servi d’indicateurs clés pour évaluer les LLMs.
+Par exemple, \textbf{HumanEval} (par OpenAI) : \textcite{rasheed_codepori_2024} rapportent que \emph{CodePori}, un système d’agents LLM dont nous ferons l'étude de cas au Chapitre \ref{etudeCodePori}, atteint jusqu’à 89\% d'amélioration de précision du code comparé à une dizaine de modèles de génération de code sur ce benchmark et 85\% lors d’une évaluation manuelle de projets complexes.    
+
+Au-delà des scores, la qualité du code généré (lisibilité, absence de bugs) s’améliore lorsqu’on applique des cycles itératifs d’exécution de tests et de correction automatique :  
+\begin{itemize}
+  \item Dans \textcite{vallecillos_ruiz_agent-driven_2024}, des agents LLM orchestrés en pipeline [génération → tests → amélioration] démontrent une réduction significative des erreurs "last-mile" (problème présents lors du fin de processus de distribution) grâce à l’apprentissage par rétroaction.  
+  %vallecillos_ruiz_agent-driven_2024
+  %The iterative nature of agents, which allows for continuous learning and adaptation, can help surpass common challenges in code generation.
+  %One distinct challenge is the last-mile problems, errors at the final stage of producing functionally and contextually relevant code.
+  %
+  \item \textcite{zahid_multi-agent_2024} montrent enfin que la collaboration de plusieurs LLMs spécialisés ("boilerplate writer", "doc generator") réduit le temps de développement et augmente la couverture de tests dans des scénarios de projet réels.  
+  %zahid_multi-agent_2024
+  %the role of autonomous LLMs in multi-agent AI collaboration, focusing on their impact  on code generation, debugging, project management, and software lifecycle optimization.
+  %By automating repetitive tasks, such as writing  boilerplate code and generating documentation, these AI agents reduce developer workload and  enhance productivity.
+\end{itemize}
+
+
+\section{Architectures multi-agents basées LLM}
+
+Les architectures multi-agents tirent parti de plusieurs LLMs collaborant selon des rôles et des topologies variées pour accomplir des tâches complexes de génération de code. 
+
+% Les architectures multi-agents pilotées par des LLM peuvent se caractériser selon plusieurs dimensions principales, telles que proposées par \textcite{handler_taxonomy_2023} :
+
+
+% handler_taxonomy_2023
+% This paper proposes a comprehensive multi-dimensional taxonomy, engineered to analyze how autonomous LLM-powered multi-agent systems balance the dynamic interplay between autonomy and alignment across various aspects inherent to architectural viewpoints such as goal-driven task management, agent composition, multi-agent collaboration, and context interaction.
+%
+
+\begin{itemize}
+  \item \textbf{Dimension composition d’agents} : \\
+    Chaque agent se spécialise dans un sous-ensemble de fonctions (par exemple, analyse des spécifications, génération de code, tests, relecture) et possède sa propre mémoire et accès à des outils externes \parencite{handler_taxonomy_2023}.
+% handler_taxonomy_2023
+%Each agent is endowed with a unique set of competencies, which include a clearly defined role and an individual memory.
+%
+    
+\item \textbf{Modes de collaboration} :
+  \begin{itemize}
+    \item Pipeline itératif : les agents s’enchaînent selon un flux génération → tests → amélioration, exploitant les boucles de rétroaction pour corriger par exemple les "last-mile" problems \parencite{vallecillos_ruiz_agent-driven_2024}.
+    \item Collaboration distribuée : plusieurs agents LLM, spécialisés (boilerplate writer, doc generator), travaillent en parallèle et consolident leurs résultats pour produire un livrable cohérent \parencite{zahid_multi-agent_2024}.
+  \end{itemize}
+
+
+  \item \textbf{Équilibrage de charge et orchestration} : \\
+    Pour optimiser la performance et la cohérence, des stratégies dynamiques redistribuent les tâches entre agents selon la charge actuelle et leur spécialisation  tout en veillant à la convergence des résultats \parencite{handler_balancing_2023}.
+
+  \item \textbf{Niveaux d’autonomie} : \\
+    Chaque agent peut opérer de manière plus ou moins autonome selon le degré de supervision humaine et les guardrails définis de l’exécution strictement guidée à l’initiative complète sur des sous-tâches \parencite{handler_taxonomy_2023}.
+\end{itemize}
+
+\section{Limites techniques et risques inhérents}
+
+L’utilisation de LLMs et d’agents IA soulève plusieurs enjeux critiques pouvant compromettre la fiabilité, la sécurité et la maintenabilité des solutions logicielles.
+
+\subsection{Biais et hallucinations}
+Les LLMs, entraînés sur des jeux de données massifs, intègrent souvent des biais socio-culturels ou sectoriels. Ces biais peuvent conduire à des généralisations inappropriées ou à des décisions discriminatoires dans le code produit. De plus, les modèles peuvent \textbf{halluciner} : générer du code incorrect ou non compilable, voire dangereux (plus généralement, \cite{wikiHallucinationIA} : générer des réponses fausses à partir de modèles ou données inexistantes ) \parencite{cui_risk_2024}.
+
+% cui_risk_2024
+% Even without adversarial attacks, current LLMs may still generate untruthful, toxic, biased, and even illegal contents
+%
+
+\subsection{Sécurité et confidentialité}
+Les processus de formation et d’utilisation des LLMs exposent à des menaces spécifiques tant au niveau de la sécurité que de la confidentialité :
+\begin{itemize}
+  \item \textbf{Vulnérabilités induites} : du code généré pourrait comporter des backdoors ou exploiter des librairies vulnérables, ouvrant la porte à des attaques ciblées, comme indiqué dans la taxonomy des menaces de \parencite{wang_unique_2024}.
+
+  \item \textbf{Fuite de données sensibles} : les LLMs peuvent mémoriser et régurgiter des extraits de leur corpus d’entraînement, y compris des secrets de configuration ou des clés d’API accidentellement indexées.
+\end{itemize}
+
+  % wang_unique_2024
+  % This tendency allows adversaries to extract private information. For example, Carlini et al. [13] found that prompts with specific prefixes could cause GPT-2 to generate content containing personal information, such as email addresses and phone numbers.
+  % Moreover, malicious third parties involved in developing LLMs in outsourcing scenarios can compromise these models’ integrity and utility through poisoning attacks [168] and backdoor attacks [132]. For example, an attacker could implant a backdoor in an LLM-based automated customer service system
+  %
+
+\section{Conclusion}
+
+Nous avons défini les briques fondamentales — IA, LLM et Agent IA — et exploré les capacités actuelles des LLMs pour la génération de code, ainsi que les architectures multi-agents et leurs limites techniques.  
+Avant de passer à l’analyse comparative IA vs humain, il est utile de préciser deux critères clés d’évaluation :
+
+\begin{itemize}
+  \item \textbf{Degré d’autonomie} : capacité d’un agent à planifier et exécuter des tâches sans intervention humaine, mesurée par la fréquence et l’importance des points de contrôle nécessaires pour éviter les erreurs critiques (tests, ...).
+  \item \textbf{Niveau d’alignement} : adéquation des décisions de l’agent avec les objectifs de haut niveau et les contraintes du projet (sécurité, style, normes), évaluée à l’aide de métriques qualitatives (revues humaines) et quantitatives (taux de conformité aux tests).
+\end{itemize}
+
+Ces deux critères permettront de juger si et comment une équipe d’agents IA peut réellement se substituer à une équipe humaine.

@@ -1,0 +1,18 @@
+\chapter{Conclusion} \label{conclusion}
+
+Ce mémoire est parti d’une interrogation simple : l’automatisation par agents IA peut-elle aller jusqu’à remplacer entièrement une équipe de développement ?
+Pour y répondre, nous avons d’abord parcouru l’état de l’art des LLMs, décrit les architectures multi-agents et analysé trois prototypes — CodePori (89 \% de réussite sur HumanEval), le cadre itératif Agent-Driven Automatic Software Improvement, et les pipelines Auto-DevOps présentés par \textcite{khan_ai-driven_2025}. Ces études de cas montrent qu’une grande partie des tâches techniques — génération, tests, documentation ou débogage — est déjà couverte avec un niveau de fiabilité oscillant entre 80\% et 90\% de précision.
+
+L’examen systématique des fonctions clés d’une équipe (de l’analyse d’exigences à la mise en production) révèle toutefois que deux domaines échappent encore largement à l’autonomie : la définition stratégique du produit et la gouvernance qualité. Les agents sont rapides : ils livrent du code exécutable en quelques minutes pour quelques dollars \parencite{rasheed_codepori_2024}, mais demeurent vulnérables aux hallucinations et aux biais \parencite{cui_risk_2024}, ainsi qu’aux attaques de type backdoor ou fuite de données \parencite{wang_unique_2024}. Tant que ces risques ne sont pas entièrement maîtrisés, une supervision humaine reste indispensable, au moins a posteriori, pour valider les livraisons et assumer la responsabilité légale.
+
+Notre analyse conduit donc à une réponse nuancée. Oui, le remplacement total est envisageable sur le plan technique ; non, il n’est pas encore acceptable sans trois garanties :
+
+\begin{itemize}
+    \item un dispositif d’alignement solide (guardrails, traçabilité),
+    \item une gestion rigoureuse de la sécurité et de la confidentialité,
+    \item un cadre de gouvernance qui précise qui ou quoi porte la responsabilité des choix d’architecture, de budget et de conformité
+\end{itemize}
+
+En proposant une cartographie fonctionnelle, une synthèse critique des prototypes et une matrice SWOT, ce travail apporte un panorama structuré des points de bascule où l’IA devance déjà l’humain, et des verrous qui subsistent. Ses limites résident principalement dans la rareté de données industrielles ouvertes et l’incertitude sur les coûts d’inférence à grande échelle. Les perspectives logiques sont doubles : d’un côté, la création de benchmarks plus représentatifs (intégrant dette technique et sécurité), de l’autre, l’étude des impacts organisationnels et éthiques d’équipes entièrement IA.
+
+En définitive, la question n’est plus tant "peut-on" automatiser, mais plutôt dans quelles conditions et avec quelles garanties nous choisirons (ou non) de le faire.
